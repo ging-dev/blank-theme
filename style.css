@@ -1,0 +1,13 @@
+/*
+Theme Name: Ging Blank
+Theme URI: http://example.com
+Author: ging-dev
+Author URI: https://github.com/ging-dev
+Description: A blank theme for WordPress.
+Version: 1.0
+License: MIT
+License URI: https://opensource.org/license/mit
+*/
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

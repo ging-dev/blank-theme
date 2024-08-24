@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<ruleset name="WordPress Coding Standards">
+    <description>A custom set of code standard rules to check for WordPress code.</description>
+    <arg name="extensions" value="php" />
+    <arg name="cache" value=".phpcs.cache" />
+    <file>.</file>
+    <exclude-pattern>*/.github/*</exclude-pattern>
+    <exclude-pattern>*/vendor/*</exclude-pattern>
+    <exclude-pattern>*/node_modules/*</exclude-pattern>
+    <rule ref="WordPress" />
+</ruleset>

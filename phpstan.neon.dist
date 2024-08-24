@@ -1,0 +1,9 @@
+parameters:
+    level: 6
+    paths:
+        - inc
+        - index.php
+        - functions.php
+
+includes:
+    - vendor/szepeviktor/phpstan-wordpress/extension.neon
