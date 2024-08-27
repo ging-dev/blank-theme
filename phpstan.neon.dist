@@ -4,6 +4,9 @@ parameters:
         - inc
         - index.php
         - functions.php
+    errorFormat: ticketswap
+    editorUrl: 'vscode://file/%%file%%:%%line%%'
 
 includes:
     - vendor/szepeviktor/phpstan-wordpress/extension.neon
+    - vendor/ticketswap/phpstan-error-formatter/extension.neon

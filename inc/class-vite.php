@@ -51,8 +51,8 @@ class Vite {
 
 		/** @var ChunkType */
 		$chunk = ( $this->is_running_hot || ! $throw ) ? array(
+            'file'    => $entry,
 			'src'     => $entry,
-			'file'    => $entry,
 			'isEntry' => true,
 		) : $this->manifest[ $entry ] ?? throw new RuntimeException(
 			sprintf( 'Entry "%s" does not exist.', $entry )

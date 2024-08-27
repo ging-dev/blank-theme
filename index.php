@@ -1,10 +1,7 @@
 <?php
 
-wp_head();
+get_header();
 
-?>
-
-<?php
 if ( have_posts() ) :
 	while ( have_posts() ) :
 		the_post();
@@ -17,4 +14,4 @@ else :
 	<?php
 endif;
 
-wp_footer();
+get_footer();
