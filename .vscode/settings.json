@@ -1,4 +1,11 @@
 {
     "php.version": "8.3",
-    "php.format.codeStyle": "WordPress"
+    "php.format.codeStyle": "WordPress",
+    "php.problems.exclude": {
+        "/": [
+            406,
+            7103
+        ],
+        "vendor/": true
+    }
 }
