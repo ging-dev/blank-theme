@@ -3,23 +3,26 @@
 /**
  * @see https://vitejs.dev/guide/backend-integration
  *
- * @phpstan-type ChunkType array{
- *      file: string,
- *      src: string,
- *      isEntry?: bool,
- *      imports?: string[],
- *      css?: string[],
- *      name?: string,
- *      isDynamicEntry?: bool,
- *      dynamicImports?: string[],
+ * @phpstan-type ManifestChunk array{
+ *     src?: string,
+ *     file: string,
+ *     css?: list<string>,
+ *     assets?: list<string>,
+ *     isEntry?: bool,
+ *     name?: string,
+ *     isDynamicEntry?: bool,
+ *     imports?: list<string>,
+ *     dynamicImports?: list<string>
  * }
+ *
+ * @phpstan-type Manifest array<string, ManifestChunk>
  */
 class Vite {
 	private string $base_uri;
 
 	public bool $is_running_hot;
 
-	/** @var array<string, ChunkType> */
+	/** @var Manifest */
 	private array $manifest = array();
 
 	public function __construct( string $build_dir = 'build' ) {
@@ -49,10 +52,9 @@ class Vite {
 	private function resolve( string $entry, bool $throw = true ): string {
 		$entry = ltrim( $entry, '/' );
 
-		/** @var ChunkType */
+		/** @var ManifestChunk */
 		$chunk = ( $this->is_running_hot || ! $throw ) ? array(
-            'file'    => $entry,
-			'src'     => $entry,
+			'file'    => $entry,
 			'isEntry' => true,
 		) : $this->manifest[ $entry ] ?? throw new RuntimeException(
 			sprintf( 'Entry "%s" does not exist.', $entry )
@@ -77,7 +79,7 @@ class Vite {
 			);
 		}
 
-		$handle = pathinfo( $chunk['file'], PATHINFO_FILENAME );
+		$handle = $chunk['name'] ?? pathinfo( $chunk['file'], PATHINFO_FILENAME );
 		$src    = "{$this->base_uri}/{$chunk['file']}";
 
 		if ( $this->is_stypesheet( $src ) ) {
